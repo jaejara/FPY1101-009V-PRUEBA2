@@ -1,1 +1,41 @@
 print ("hola.")
+# Valores base
+precio_medicamento = 60000
+precio_despacho = 8000
+
+# Entrada de datos
+edad = int(input("Ingrese su edad: "))
+tramo = input("Ingrese su tramo (A, B, C o D): ").upper()
+
+# Cálculo del descuento de medicamentos
+descuento_medicamento = 0
+
+if edad <= 30:
+    if tramo in ['A', 'B']:
+        descuento_medicamento = 0.18
+    elif tramo in ['C', 'D']:
+        descuento_medicamento = 0.12
+elif 31 <= edad <= 60:
+    if tramo in ['A', 'B']:
+        descuento_medicamento = 0.12
+    elif tramo in ['C', 'D']:
+        descuento_medicamento = 0.08
+else:
+    descuento_medicamento = 0
+
+# Valor final de los medicamentos
+valor_medicamento_final = precio_medicamento * (1 - descuento_medicamento)
+
+# Cálculo del descuento de despacho
+descuento_despacho = 0
+if tramo in ['A', 'B']:
+    descuento_despacho += 0.10
+if edad >= 55:
+    descuento_despacho += 0.05
+
+# Valor final del despacho
+valor_despacho_final = precio_despacho * (1 - descuento_despacho)
+
+# Resultados
+print(f"El valor final de los medicamentos es: {int(valor_medicamento_final)}")
+print(f"El valor final del despacho es: {int(valor_despacho_final)}")

@@ -1,0 +1,49 @@
+from random import randint
+def pedir_numero(mensaje):
+    while True:
+        entrada = input(mensaje)
+        try:
+            return int(entrada)
+        except ValueError:
+            print("Error: solo debe ingresar números.")
+# Rango
+num1 = pedir_numero("Ingrese el límite inferior del rango: ")
+num2 = pedir_numero("Ingrese el límite superior del rango: ")
+# Número aleatorio (ajuste a par)
+numero = randint(num1, num2)
+if numero % 2 != 0:
+    if numero + 1 <= num2:
+        numero = numero + 1
+    else:
+        numero = numero - 1
+# Juego
+intento1 = pedir_numero("Ingrese su primer intento: ")
+if intento1 == numero:
+    print("Felicitaciones, adivinó en el primer intento.")
+else:
+    if intento1 < numero:
+        print("El número es mayor.")
+    else:
+        print("El número es menor.")
+    intento2 = pedir_numero("Ingrese su segundo intento: ")
+    if intento2 == numero:
+        print("Felicitaciones, adivinó en su segundo intento.")
+    else:
+        if intento2 < numero:
+            mensaje = "El número es mayor."
+        else:
+            mensaje = "El número es menor."
+        distancia1 = abs(intento1 - numero)
+        distancia2 = abs(intento2 - numero)
+        if distancia1 < distancia2:
+            mas_cerca = intento1
+            mas_lejos = intento2
+        else:
+            mas_cerca = intento2
+            mas_lejos = intento1
+        print(f"{mensaje} Te daré una pista: El número que buscas está más cerca de {mas_cerca} que de {mas_lejos}")
+        intento3 = pedir_numero("Ingrese su tercer intento: ")
+        if intento3 == numero:
+            print("Felicitaciones, pudiste adivinar.")
+        else:
+            print(f"Perdiste. El número era: {numero}")
